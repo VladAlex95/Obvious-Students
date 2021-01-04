@@ -1,0 +1,55 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04.12.2019, 17:32:44
+    Author     : Alexandru
+*/
+root { 
+    display: block;
+}
+table.persoane {
+    border-collapse: collapse; /* so we can control cellspacing in a practical way */
+    border-bottom: 2px solid #000;
+}
+table.persoane tr.odd td {
+    border-top: 1px solid #ccc;
+}
+table.persoane tr.even {
+    background-color: #FBFBFB;
+}
+table.persoane tr.even td {
+    border-top: 1px solid #BBEEEE;
+}
+table.persoane th {
+    background-color: #000ddd;
+    color: #BB0000;
+    border-bottom: 2px solid #000;
+}
+table.note {
+    border-collapse: collapse; /* so we can control cellspacing in a practical way */
+    border-bottom: 2px solid #000;
+}
+table.note th {
+    background-color: #000ddd;
+    color: #BB0000;
+    border-bottom: 2px solid #000;
+}
+.col1 { width: 150px;}
+.col2 { width: 150px; }
+.col3 { 
+    width: 150px;
+    text-align: center;
+}
+.col4 { 
+    width: 100px;
+    text-align: right;
+}
+.impar {
+    background-color: #FBFBFB;
+}
+.par {
+    background-color: #ff5f00;
+}

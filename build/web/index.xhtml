@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Lista Studentilor</title>
+        <h:outputStylesheet library="css" name="tabel.css"/>      
+    </h:head>
+
+    <h:messages/>
+    <h:form>
+        <h:commandButton value="Note" action="note.xhtml" />
+        Lista studentilor
+        <h:dataTable 
+            value="#{tabStudenti.studenti}" var="c"
+            styleClass="persoane"
+            cellspacing="0" 
+            cellpadding="0" 
+            border="0"
+            rowClasses="odd,even" 
+            >
+            <h:column>
+                <f:facet name="header">Nume</f:facet>
+                <h:inputText value="#{c.nume}" size="30" id="nume"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Varsta</f:facet>
+                <h:inputText value="#{c.varsta}" size="5" style="text-align: right"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Media</f:facet>
+                <h:inputText value="#{c.media}" size="5" style="text-align: right" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actiune</f:facet>
+                <h:commandButton value="Modifica" action="#{tabStudenti.modifica(c)}"/>
+                <h:commandButton value="Sterge" action="#{tabStudenti.sterge(c)}" />
+            </h:column>
+
+        </h:dataTable>
+
+        <h:inputText id="nume" value="#{student.nume}" size="30"/>
+        <h:inputText id="varsta" value="#{student.varsta}" size="5" 
+                     style="text-align: right" />
+        <h:inputText id="media" value="#{student.media}" size="5" style="text-align: right"/>
+        <h:commandButton value="Adauga" action="#{tabStudenti.adauga(student)}" />
+
+
+        <h:selectOneRadio value="#{tabStudenti.sortare}">
+            <f:selectItem itemValue="nume" itemLabel="nume" />
+            <f:selectItem itemValue="varsta" itemLabel="varsta" />
+            <f:selectItem itemValue="media" itemLabel="media" />
+        </h:selectOneRadio>
+        <h:selectOneRadio value="#{tabStudenti.crescDesc}">
+            <f:selectItem itemValue=" ASC" itemLabel="crescator" />
+            <f:selectItem itemValue=" DESC" itemLabel="descrescator" />
+        </h:selectOneRadio>
+
+        <h:commandButton value="Sorteaza" action="#{tabStudenti.init}" />
+        <h:panelGrid columns="2" >
+            <h:outputText value="unu"/>
+            <h:outputText value="doi"/>
+            <h:outputText value="trei"/>
+
+        </h:panelGrid>
+        <h:panelGrid columns="2">
+            <c:forEach var="c" items="#{tabStudenti.studenti}">
+                #{c.nume}
+            </c:forEach>
+        </h:panelGrid>
+
+    </h:form>
+</html>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+       <title>Note studenti</title>
+        <h:outputStylesheet library="css" name="tabel.css"/>
+    </h:head>
+    <h:body>
+         <h:form>
+            <h:commandButton value="Studenti" action="index.xhtml" />
+        </h:form>
+        
+        Note studenti<br/>
+        Data:
+         <h:outputText value="#{tabNote.data}"/>
+        <h:form>
+
+            <h:selectOneMenu value="#{tabNote.filtruPersoana}">
+                <f:selectItems value="#{tabStudenti.studenti}" var="s"
+                               itemValue="#{s.id}" itemLabel="#{s.nume}"/>
+            </h:selectOneMenu> 
+
+
+            <h:selectOneMenu value="#{tabNote.filtruDisciplina}">
+                <f:selectItems value="#{tabDiscipline.lista}" var="d"
+                               itemValue="#{d.id}" itemLabel="#{d.nume}"/>
+            </h:selectOneMenu>
+           <h:inputText value="#{tabNote.nota}" size="5" style="text-align: right"/>
+            <h:commandButton value="AdaugaNota" action="#{tabNote.adaugaNota()}"/>
+            <h:commandButton value="FiltrareN" action="#{tabNote.filtreazaNume}"/>
+            <h:commandButton value="FiltrareD" action="#{tabNote.filtreazaDisciplina}"/>
+            <h:commandButton value="FiltrareN+D" action="#{tabNote.init}"/>
+            <h:commandButton value="Reset" action="#{tabNote.reset}"/>
+        </h:form>
+        <br/>
+        <h:dataTable 
+            value="#{tabNote.lista}" var="c"
+            styleClass="note"
+            cellspacing="0" 
+            cellpadding="0" 
+            border="0"
+            rowClasses="impar,par"
+            columnClasses="col1,col2,col3,col4"
+            >
+            <h:column>
+                <f:facet name="header">Nume</f:facet>
+                <h:outputText value="#{c.nume}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Disciplina</f:facet>
+                <h:outputText value="#{c.disciplina}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Data</f:facet>
+                <h:outputText value="#{c.data}"/>
+            </h:column>            
+            <h:column>
+                <f:facet name="header">Nota</f:facet>
+                <h:outputText value="#{c.nota}"/>
+            </h:column>            
+        </h:dataTable>  
+    </h:body>
+</html>
+
